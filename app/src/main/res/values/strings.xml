@@ -10,4 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_device_info">Device Info</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="bluetooth_low_energy"><b>Bluetooth Low Energy</b></string>
+    <string name="hardware"><b>Hardware</b></string>
+    <string name="bluetooth_common"><b>Bluetooth Common</b></string>
 </resources>

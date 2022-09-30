@@ -1,16 +1,21 @@
 package com.ohtong.bluetooth;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageParser;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -19,10 +24,15 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ohtong.bluetooth.core.BluetoothManager;
 import com.ohtong.bluetooth.databinding.ActivityMainBinding;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "OT.MainActivity";
+    private static final int BT_PERMISSION_CONNECT = 1000;
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -30,6 +40,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
+        init();
+//        if (ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+//            requestPermissions(new String[] { Manifest.permission.BLUETOOTH_SCAN }
+//                    , BT_PERMISSION_CONNECT);
+//        } else {
+//            init();
+//        }
+    }
+
+    private void init() {
+        BluetoothManager.getInstance(getApplicationContext());
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
