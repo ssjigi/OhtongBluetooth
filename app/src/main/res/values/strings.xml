@@ -13,4 +13,14 @@
     <string name="bluetooth_low_energy"><b>Bluetooth Low Energy</b></string>
     <string name="hardware"><b>Hardware</b></string>
     <string name="bluetooth_common"><b>Bluetooth Common</b></string>
+    <string name="device_name">Device name</string>
+    <string name="android_version">Android version</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="model">Model</string>
+    <string name="build_version">Build version</string>
+    <string name="board">Board</string>
+    <string name="product">Product</string>
+    <string name="bt_name">BT name</string>
+    <string name="bt_address">BT address</string>
+    <string name="br_edr_scan_mode">BR/EDR scan mode</string>
 </resources>

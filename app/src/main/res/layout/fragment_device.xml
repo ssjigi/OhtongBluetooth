@@ -39,7 +39,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Device name"
+                    android:text="@string/device_name"
                     android:textSize="15sp" />
 
                 <TextView
@@ -48,7 +48,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Android version"
+                    android:text="@string/android_version"
                     android:textSize="15sp" />
 
                 <TextView
@@ -57,7 +57,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Manufacturer"
+                    android:text="@string/manufacturer"
                     android:textSize="15sp" />
 
                 <TextView
@@ -66,7 +66,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Model"
+                    android:text="@string/model"
                     android:textSize="15sp" />
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Build version"
+                    android:text="@string/build_version"
                     android:textSize="15sp" />
 
                 <TextView
@@ -84,7 +84,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Board"
+                    android:text="@string/board"
                     android:textSize="15sp" />
 
                 <TextView
@@ -93,7 +93,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Product"
+                    android:text="@string/product"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -189,7 +189,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="BT name"
+                    android:text="@string/bt_name"
                     android:textSize="15sp" />
 
                 <TextView
@@ -198,7 +198,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="BT address"
+                    android:text="@string/bt_address"
                     android:textSize="15sp" />
 
                 <TextView
@@ -207,7 +207,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="BR/EDR scan mode"
+                    android:text="@string/br_edr_scan_mode"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -399,14 +399,6 @@
                     android:textSize="15sp" />
                 <TextView
                     android:id="@+id/maximum_advertisement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:textSize="15sp" />
-                <TextView
-                    android:id="@+id/scan_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"

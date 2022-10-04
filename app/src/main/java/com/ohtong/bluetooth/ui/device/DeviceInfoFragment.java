@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -36,6 +37,8 @@ public class DeviceInfoFragment extends Fragment {
         binding = FragmentDeviceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        ActivityResultLauncher<String[]> permissionsLaunchers = registerPermissions(deviceInfoModel);
+
         deviceInfoModel.updateDeviceName().observe(getViewLifecycleOwner(), binding.deviceName::setText);
         deviceInfoModel.updateAndroidversion().observe(getViewLifecycleOwner(), binding.androidVersion::setText);
         deviceInfoModel.updateManufacturer().observe(getViewLifecycleOwner(), binding.manufacturer::setText);
@@ -44,30 +47,20 @@ public class DeviceInfoFragment extends Fragment {
         deviceInfoModel.updateBoard().observe(getViewLifecycleOwner(), binding.board::setText);
         deviceInfoModel.updateProduct().observe(getViewLifecycleOwner(), binding.product::setText);
 
-        // FIXME: 2022-09-30 
-        ActivityResultLauncher<String> permissionLauncher = registerForActivityResult(
-                        new ActivityResultContracts.RequestPermission(), isGranted -> {
-                            if (isGranted) {
-                                Log.d(TAG, "onCreateView: yes");
-                                deviceInfoModel.updateScanMode().observe(getViewLifecycleOwner(), binding.scanCode::setText);
-                                deviceInfoModel.updateBtName().observe(getViewLifecycleOwner(), binding.btDeviceName::setText);
-                                deviceInfoModel.updateBtAddress().observe(getViewLifecycleOwner(), binding.btAddress::setText);
-                            } else {
-                                Log.d(TAG, "onCreateView: false");
-                            }
-                        }
-        );
 
         if (ActivityCompat.checkSelfPermission(
-                getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "onCreateView: launch");
-            permissionLauncher.launch(Manifest.permission.BLUETOOTH_SCAN);
+                getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED
+            || ActivityCompat.checkSelfPermission(
+                getContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "onCreateView: launch permissions");
+            String[] permissions = { Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT };
+            permissionsLaunchers.launch(permissions);
         } else {
-            deviceInfoModel.updateScanMode().observe(getViewLifecycleOwner(), binding.scanCode::setText);
+            deviceInfoModel.updateScanMode().observe(getViewLifecycleOwner(), binding.btScanMode::setText);
             deviceInfoModel.updateBtName().observe(getViewLifecycleOwner(), binding.btDeviceName::setText);
             deviceInfoModel.updateBtAddress().observe(getViewLifecycleOwner(), binding.btAddress::setText);
         }
-        
+
         deviceInfoModel.getOffloadedFilteringSupported().observe(
                 getViewLifecycleOwner(), new Observer<String>() {
                     @Override
@@ -120,6 +113,29 @@ public class DeviceInfoFragment extends Fragment {
         deviceInfoModel.getLeMaximumAdvertisingDataLength().observe(
                 getViewLifecycleOwner(), binding.maximumAdvertisement::setText);
         return root;
+    }
+
+    private ActivityResultLauncher<String[]> registerPermissions(DeviceInfoModel deviceInfoModel) {
+        ActivityResultLauncher<String[]> permissionsLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
+                    boolean isGrantedScan = isGranted.get(Manifest.permission.BLUETOOTH_SCAN);
+                    boolean isGrantedConnect = isGranted.get(Manifest.permission.BLUETOOTH_CONNECT);
+                    Log.d(TAG, "registerPermissions: isGrantedScan = " + isGrantedScan + ", isGrantedConnect = " + isGrantedConnect);
+                    if (isGrantedScan) {
+                        deviceInfoModel.updateScanMode().observe(getViewLifecycleOwner(), binding.btScanMode::setText);
+                    } else {
+                        Toast.makeText(getContext(), "need permission BLUETOOTH_SCAN", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (isGrantedConnect) {
+                        deviceInfoModel.updateBtName().observe(getViewLifecycleOwner(), binding.btDeviceName::setText);
+                        deviceInfoModel.updateBtAddress().observe(getViewLifecycleOwner(), binding.btAddress::setText);
+                    } else {
+                        Toast.makeText(getContext(), "need permission BLUETOOTH_CONNECT", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        return permissionsLauncher;
     }
 
     private void updateTextAndColor(TextView view, String s) {
