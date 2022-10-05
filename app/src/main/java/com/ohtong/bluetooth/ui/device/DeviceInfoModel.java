@@ -17,8 +17,7 @@ import androidx.lifecycle.ViewModel;
 
 public class DeviceInfoModel extends AndroidViewModel {
     private static final String TAG = "OT.DeviceInfoModel";
-    private final MutableLiveData<String> mText;
-    private BluetoothManager mBtAdapter;
+    private final BluetoothManager mBtAdapter;
 
     // Hardware data
     private final MutableLiveData<String> mDeviceName;
@@ -46,8 +45,6 @@ public class DeviceInfoModel extends AndroidViewModel {
 
     public DeviceInfoModel(Application application) {
         super(application);
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Device Info Fragment");
         mBtAdapter = BluetoothManager.getInstance(application);
 
         mDeviceName = new MutableLiveData<>();

@@ -13,10 +13,10 @@ public class BluetoothManager {
 
    private static BluetoothManager sInstance;
 
-   private Context mContext;
+   private final Context mContext;
 
-   private android.bluetooth.BluetoothManager mBtManager;
-   private BluetoothAdapter mBtAdapter;
+   private final android.bluetooth.BluetoothManager mBtManager;
+   private final BluetoothAdapter mBtAdapter;
 
    private BluetoothManager(Context context) {
       mContext = context;
