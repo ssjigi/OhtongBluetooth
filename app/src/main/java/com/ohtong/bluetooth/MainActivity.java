@@ -1,8 +1,5 @@
 package com.ohtong.bluetooth;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageParser;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ohtong.bluetooth.core.BluetoothManager;
 import com.ohtong.bluetooth.databinding.ActivityMainBinding;
 
-import java.util.Arrays;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "OT.MainActivity";
-    private static final int BT_PERMISSION_CONNECT = 1000;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -60,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_device_info, R.id.nav_slideshow)
+                R.id.nav_scan, R.id.nav_device_info, R.id.nav_slideshow)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

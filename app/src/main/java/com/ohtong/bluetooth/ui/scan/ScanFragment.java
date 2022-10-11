@@ -1,4 +1,4 @@
-package com.ohtong.bluetooth.ui.home;
+package com.ohtong.bluetooth.ui.scan;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ohtong.bluetooth.databinding.FragmentHomeBinding;
+import com.ohtong.bluetooth.databinding.FragmentScanBinding;
 
-public class HomeFragment extends Fragment {
+public class ScanFragment extends Fragment {
     private static final String TAG = "OT.HomeFragment";
-    private FragmentHomeBinding binding;
+    private FragmentScanBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentScanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;

@@ -1,4 +1,4 @@
-package com.ohtong.bluetooth.ui.home;
+package com.ohtong.bluetooth.ui.scan;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
