@@ -1,6 +1,8 @@
-package com.ohtong.bluetooth.ui.home;
+package com.ohtong.bluetooth.ui.advertiser;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ohtong.bluetooth.databinding.FragmentHomeBinding;
+import com.ohtong.bluetooth.databinding.FragmentAdvertiserBinding;
 
-public class HomeFragment extends Fragment {
+public class AdvertiserFragment extends Fragment {
+    private static final String TAG = "AdvertiserFragment";
 
-    private FragmentHomeBinding binding;
+    private FragmentAdvertiserBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        Log.d(TAG, "onCreateView: ");
+        AdvertiserViewModel homeViewModel =
+                new ViewModelProvider(this).get(AdvertiserViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentAdvertiserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
@@ -31,6 +35,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        Log.d(TAG, "onDestroyView: ");
         super.onDestroyView();
         binding = null;
     }
