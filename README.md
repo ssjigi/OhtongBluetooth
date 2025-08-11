@@ -1,2 +1,0 @@
-# OhtongBluetooth
-Bluetooth Reference App
